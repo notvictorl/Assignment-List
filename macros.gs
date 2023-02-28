@@ -11,9 +11,8 @@ function HidePastAssignments() {
   var rangeValues = spreadsheet.getDataRange().getValues();
 
   for (var i = 1; rangeValues[i][0]; i++) {
-    if (rangeValues[i][3] < new Date()) {
-      spreadsheet.getRange(i + ':' + i).activate();
-      spreadsheet.getActiveSheet().hideRows(spreadsheet.getActiveRange().getRow(), spreadsheet.getActiveRange().getNumRows());
+    if (rangeValues[i][3] < new Date(new Date().toDateString())) {
+      spreadsheet.getActiveSheet().hideRows(i+1);
     }
   }
 };
