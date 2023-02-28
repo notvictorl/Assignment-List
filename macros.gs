@@ -7,12 +7,13 @@ function SortbyDate() {
 };
 
 function HidePastAssignments() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  var rangeValues = spreadsheet.getDataRange().getValues();
+  var activeSheet = SpreadsheetApp.getActive().getActiveSheet();
+  var rangeValues = activeSheet.getDataRange().getValues();
+  var today000000 = new Date(new Date().toDateString());
 
   for (var i = 1; rangeValues[i][0]; i++) {
-    if (rangeValues[i][3] < new Date(new Date().toDateString())) {
-      spreadsheet.getActiveSheet().hideRows(i+1);
+    if (rangeValues[i][3] < today000000) {
+      activeSheet.hideRows(i+1);
     }
   }
 };
